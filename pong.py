@@ -36,27 +36,27 @@ display_banner()  # Display the banner before any user input
 
 def ask_user():
     # Constants
-    HOST = input("Hostadres (ipv4/fqdn): ")
+    HOST = input("Host address (ipv4/fqdn): ")
     try:
-        timeout_input = input("Voer de timeout (in milliseconden) in (of druk enter voor 2000): ")
+        timeout_input = input("Enter timeout (in milliseconds) or press enter for 2000: ")
         TIMEOUT = float(timeout_input)/1000 if timeout_input else 2.0  # Convert ms to seconds
     except ValueError:
-        print("Ongeldige timeout waarde. Standaardwaarde van 2000 milliseconden wordt gebruikt.")
+        print("Invalid timeout value. Using default value of 2000 milliseconds.")
         TIMEOUT = 2.0
 
     try:
-        count_input = input("Aantal pings (of druk enter voor 4): ")
+        count_input = input("Number of pings (or press enter for 4): ")
         PING_COUNT = int(count_input) if count_input else 4
     except ValueError:
-        print("Ongeldig aantal. Standaardwaarde van 4 pings wordt gebruikt.")
+        print("Invalid number. Using default value of 4 pings.")
         PING_COUNT = 4
 
-    return HOST, TIMEOUT, PING_COUNT  # Return the values
+    return HOST, TIMEOUT, PING_COUNT
 
 def get_output_choice():
-    choice = input("Wil je de output naar de console of een bestand sturen? (console/file): ").strip().lower()
+    choice = input("Do you want to send the output to console or file? (console/file): ").strip().lower()
     if choice not in ['console', 'file']:
-        print("Ongeldige keuze. Standaard naar console.")
+        print("Invalid choice. Defaulting to console.")
         return 'console'
     return choice
 
@@ -153,16 +153,16 @@ def list_ping_files():
     files = glob.glob(os.path.join(pongs_dir, "*_*_*.txt"))
     
     if not files:
-        print("Geen ping output bestanden gevonden in de ~/.pongs directory.")
+        print("No ping output files found in the ~/.pongs directory.")
         return None
     
-    print("\nBeschikbare ping output bestanden:")
+    print("\nAvailable ping output files:")
     for i, file in enumerate(files, 1):
         print(f"{i}. {os.path.basename(file)}")
     
     while True:
         try:
-            choice = input("\nKies een bestand (nummer) of druk op Enter om te annuleren: ").strip()
+            choice = input("\nChoose a file (number) or press Enter to cancel: ").strip()
             if not choice:
                 return None
             
@@ -170,15 +170,15 @@ def list_ping_files():
             if 0 <= file_index < len(files):
                 return files[file_index]
             else:
-                print("Ongeldige keuze. Probeer opnieuw.")
+                print("Invalid choice. Please try again.")
         except ValueError:
-            print("Voer een geldig nummer in.")
+            print("Please enter a valid number.")
 
 def main():
     # Add file argument handling at the start of main()
     if len(sys.argv) > 1 and sys.argv[1].endswith('.txt'):
         # If file argument provided, analyze it immediately
-        threshold = float(input("Voer de drempelwaarde in milliseconden in: ").strip())
+        threshold = float(input("Enter threshold value in milliseconds: ").strip())
         analyze_file(sys.argv[1], threshold)
         return
     
@@ -210,11 +210,11 @@ def main():
     
     
     # Ask user if they want to analyze a file
-    analyze_choice = input("Wil je een eerder gegenereerd bestand analyseren? (ja/nee): ").strip().lower()
-    if analyze_choice == 'ja':
+    analyze_choice = input("Do you want to analyze a previously generated file? (yes/no): ").strip().lower()
+    if analyze_choice == 'yes':
         selected_file = list_ping_files()
         if selected_file:
-            threshold = float(input("Voer de drempelwaarde in milliseconden in: ").strip())
+            threshold = float(input("Enter threshold value in milliseconds: ").strip())
             analyze_file(selected_file, threshold)
 
 def setup():
