@@ -1,6 +1,9 @@
 # pong
 Professional ping in python
 
+# Language
+I will change all dutch prompts to english,... soon. ;)
+
 # Requirements:
 - python3
 - tqdm
