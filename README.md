@@ -1,5 +1,5 @@
 # pong
-Professional ping in python
+_Professional_ ping in python
 
 # Usage
 Run script. It will challenge you for your input. Host, repeatcount, timeout and preffered method op output. 
