@@ -1,8 +1,11 @@
 # pong
 Professional ping in python
 
-# Language
-I will change all dutch prompts to english,... soon. ;)
+# Usage
+Run script. It will challenge you for your input. Host, repeatcount, timeout and preffered method op output. 
+
+Files are stored in ~/.pongs in text. 
+Filename format is: host_repeatcount_date-time.txt
 
 # Requirements:
 - python3
@@ -16,3 +19,38 @@ This script is meant to do ping. However, it can store the results in a file bas
 
 Cheers,
 Tommie
+
+# Example output
+tommie@dikke:~/.pongs$ pong.py 
+
+    ___   _______  __   __  _______ 
+    |   | |       ||  |_|  ||       |
+    |   | |       ||       ||    _  |
+    |   | |       ||       ||   |_| |
+    |   | |      _||       ||    ___|
+    |   | |     |_ | ||_|| ||   |    
+    |___| |_______||_|   |_||___|    
+                            v1.nerd
+    # files are stored in ~/.pongs
+    
+Do you want to send the output to console or file? (console/file): **file**
+Host address (ipv4/fqdn): **ppiitt.nl**
+Enter timeout (in milliseconds) or press enter for 2000: **150**
+Number of pings (or press enter for 4): **8**
+Pinging: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:08<00:00,  1.03s/ping]
+Do you want to analyze a previously generated file? (yes/no): **yes**
+
+Available ping output files:
+1. 10.0.0.10_15_20241209-205841.txt
+2. 1.2.3.4_4_20241209-214627.txt
+3. ppiitt.nl_8_20241209-215059.txt
+4. 10.0.0.1_3600_20241209-205917.txt
+5. google.de_2_20241209-214817.txt
+
+Choose a file (number) or press Enter to cancel: **3**
+Enter threshold value in milliseconds: **29**
+
+Analysis of /home/tommie/.pongs/ppiitt.nl_8_20241209-215059.txt:
+    Total pings: 8
+    Pings above 29.0ms: 1 (12.50%)
+    Minimum RTT = 26.94ms, Maximum RTT = 29.01ms, Average RTT = 28.03ms, 95th Percentile = 29.32ms
