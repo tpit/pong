@@ -4,8 +4,11 @@ _Professional_ ping in python
 # Usage
 Run script. It will challenge you for your input. Host, repeatcount, timeout and preffered method op output. 
 
+Place a symbolic link to your pong.py file in /usr/bin/local so your pong.py is in $PATH variable. Make sure to have your pong.py executable.
+
 - python3 pong.py
-- python3 pong.py textfile        -> for analysis of previous run
+- python3 pong.py textfile    -> for analysis of previous run
+- python3 pong.py erase       -> erase *.txt from ~/.pongs/ directory         
 
 Files are stored in ~/.pongs in text. 
 Filename format is: host_repeatcount_date-time.txt
