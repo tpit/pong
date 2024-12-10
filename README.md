@@ -4,8 +4,8 @@ _Professional_ ping in python
 # Usage
 Run script. It will challenge you for your input. Host, repeatcount, timeout and preffered method op output. 
 
-# python3 pong.py
-# python3 pong.py textfile        -> for analysis of previous run
+- python3 pong.py
+- python3 pong.py textfile        -> for analysis of previous run
 
 Files are stored in ~/.pongs in text. 
 Filename format is: host_repeatcount_date-time.txt
