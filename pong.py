@@ -10,7 +10,6 @@ Version: 1.0
 import os
 import sys
 
-import socket
 import time
 import statistics
 from datetime import datetime
@@ -175,15 +174,30 @@ def list_ping_files():
             print("Please enter a valid number.")
 
 def main():
-    # Add file argument handling at the start of main()
-    if len(sys.argv) > 1 and sys.argv[1].endswith('.txt'):
-        # If file argument provided, analyze it immediately
-        threshold = float(input("Enter threshold value in milliseconds: ").strip())
-        analyze_file(sys.argv[1], threshold)
-        return
-    
-    output_choice = get_output_choice()
-    HOST, TIMEOUT, PING_COUNT = ask_user()  # Capture the returned values
+    # Handle command line arguments
+    if len(sys.argv) > 1:
+        # If argument ends with .txt, treat it as a file for analysis
+        if sys.argv[1].endswith('.txt'):
+            threshold = float(input("Enter threshold value in milliseconds: ").strip())
+            analyze_file(sys.argv[1], threshold)
+            return
+        if sys.argv[1] == 'erase':
+            print("Erasing *.txt files in directory ~/.pongs")
+            os.system("rm -rf ~/.pongs/*.txt")
+            return
+        # Otherwise, treat it as a hostname
+        else:
+            HOST = sys.argv[1]
+            output_choice = get_output_choice()
+            # Use default values for timeout and ping count when running from command line
+            TIMEOUT = 2.0  # 2 seconds
+            PING_COUNT = 4
+    else:
+        # If no arguments, proceed with interactive mode
+        output_choice = get_output_choice()
+        HOST, TIMEOUT, PING_COUNT = ask_user()
+
+    # Rest of the ping logic
     if output_choice == 'file':
         filename = generate_filename(HOST, PING_COUNT)
         rtts = ping_host(HOST, TIMEOUT, PING_COUNT, output_choice)
