@@ -28,6 +28,9 @@ def display_banner():
     |___| |_______||_|   |_||___|    
                             v1.nerd
     # files are stored in ~/.pongs
+    # argument: erase - to delete all files in ~/.pongs
+    # argument: <host> - to choose a host directly
+    # argument: <file>.txt - to analyze a previous run
     """
     print(banner)
 
@@ -53,7 +56,7 @@ def ask_user():
     return HOST, TIMEOUT, PING_COUNT
 
 def get_output_choice():
-    choice = input("Do you want to send the output to console or file? (console/file): ").strip().lower()
+    choice = input("Output to console or file? (console/file): ").strip().lower()
     if choice not in ['console', 'file']:
         print("Invalid choice. Defaulting to console.")
         return 'console'
@@ -174,11 +177,14 @@ def list_ping_files():
             print("Please enter a valid number.")
 
 def main():
-    # Handle command line arguments
+    # Handle command line arguments FIRST before interactive mode :)
+    threshold = 25.0
     if len(sys.argv) > 1:
         # If argument ends with .txt, treat it as a file for analysis
         if sys.argv[1].endswith('.txt'):
-            threshold = float(input("Enter threshold value in milliseconds: ").strip())
+            input_threshold = input("Enter threshold value in milliseconds (25): ").strip()
+            if input_threshold:
+                threshold = float(input_threshold) if input_threshold else 25.0  #arghhhh
             analyze_file(sys.argv[1], threshold)
             return
         if sys.argv[1] == 'erase':
@@ -193,7 +199,7 @@ def main():
             TIMEOUT = 2.0  # 2 seconds
             PING_COUNT = 4
     else:
-        # If no arguments, proceed with interactive mode
+        # If no arguments, proceed with interactive mode cause no arguments where given
         output_choice = get_output_choice()
         HOST, TIMEOUT, PING_COUNT = ask_user()
 
@@ -224,11 +230,13 @@ def main():
     
     
     # Ask user if they want to analyze a file
-    analyze_choice = input("Do you want to analyze a previously generated file? (yes/no): ").strip().lower()
+    analyze_choice = input("Do you want to analyze this run or a previously generated file? (yes/no): ").strip().lower()
     if analyze_choice == 'yes':
         selected_file = list_ping_files()
         if selected_file:
-            threshold = float(input("Enter threshold value in milliseconds: ").strip())
+            input_threshold = input("Enter threshold value in milliseconds (25): ").strip()
+            if input_threshold:
+                threshold = float(input_threshold) if input_threshold else 25.0  #arghhhh
             analyze_file(selected_file, threshold)
 
 def setup():
