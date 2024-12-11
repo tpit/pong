@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
 """
-Description: [ping for professionals]
-Author: [Tommie Pit]
-Date: 2024-01-09
-Version: 1.0
+Description: [ ping for professionals ;) ]
+Author: [ Tommie Pit ]
+Date: [ 2024-01-09 ]
+Version: [ 1.0 ]
 """
 
 # Standard library imports
-import os
-import sys
-
-import time
-import statistics
-from datetime import datetime
-import glob  # Add this to your imports at the top
-from tqdm import tqdm  # Add this to your imports
-from ping3 import ping, verbose_ping
+import os                                       # needed for file handling
+import sys                                      # needed for command line arguments
+import time                                     # needed for timing
+import statistics                               # needed for statistics
+from datetime import datetime                   # needed for timestamping
+import glob                                     # needed for listing files
+from tqdm import tqdm                           # needed for progress bar
+from ping3 import ping, verbose_ping            # needed for pinging the host
 
 def display_banner():
     banner = r"""
