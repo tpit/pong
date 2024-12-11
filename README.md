@@ -10,8 +10,8 @@ Place a symbolic link to your pong.py file in /usr/bin/local so your pong.py is 
 
 Arguments will do things ;)
 
-- python3 pong.py textfile    -> for analysis of previous run
-- python3 pong.py erase       -> erase *.txt from ~/.pongs/ directory         
+- python3 pong.py textfile.txt    -> for analysis of previous run
+- python3 pong.py erase           -> erase *.txt from ~/.pongs/ directory         
 
 Files are stored in ~/.pongs in text. 
 Filename format is: host_repeatcount_date-time.txt
