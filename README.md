@@ -7,6 +7,9 @@ Run script. It will challenge you for your input. Host, repeatcount, timeout and
 Place a symbolic link to your pong.py file in /usr/bin/local so your pong.py is in $PATH variable. Make sure to have your pong.py executable.
 
 - python3 pong.py
+
+Arguments will do things ;)
+
 - python3 pong.py textfile    -> for analysis of previous run
 - python3 pong.py erase       -> erase *.txt from ~/.pongs/ directory         
 
